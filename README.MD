@@ -50,4 +50,9 @@ Make Sure you are in the code directory
 `python main.py`
 
 
+![Screenshot 2023-01-05 201218](https://user-images.githubusercontent.com/63492224/210905034-8bf0eb7a-c78d-47f3-b6bf-7d7a6c83fd9a.png)
+
+
 Note: make sure the time format is followed
+
+
