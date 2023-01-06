@@ -1,6 +1,16 @@
 # add the video to this video clip
+import os.path
+
 from moviepy.editor import concatenate_videoclips
 from moviepy.video.io.VideoFileClip import VideoFileClip
+
+
+def create_folder(folder_name):
+    if os.path.exists(folder_name):
+        print("Print Folder already exists please use another folder")
+        exit()
+    else:
+        os.mkdir(folder_name)
 
 
 def extract_video_clip(file_name, time_start, time_end, file_path):
