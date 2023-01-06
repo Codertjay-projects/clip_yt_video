@@ -12,38 +12,42 @@ CRED = "\33[31m"
 
 
 def ask_use_local_video_or_youtube():
-    # It returns the path to the video file
-    # Ask the user questions
-    print("\n")
-    user_wants = questionary.select(
-        "What do you want to do?",
-        choices=[
-            "1) Use youtube link. ",
-            "2) Use local video. ",
-        ]).ask()
-    user_wants_index = int(user_wants[0])
-    if user_wants_index == 1:
-        # then the user wants to use local video
-        filename = input("Please input filename? ")
-        youtube_link = input("Please input youtube link? ")
-        print("Downloading")
-        video_file = Download(link=youtube_link, filename=filename.replace(" ", "_"))
-        # Return the file path
-        return video_file
-    elif user_wants_index == 2:
+    try:
+        # It returns the path to the video file
+        # Ask the user questions
         print("\n")
-        # The user chose the video located on his or machine
-        video_file = questionary.path("What's the path to the video?").ask()
-        if not os.path.exists(video_file):
+        user_wants = questionary.select(
+            "What do you want to do?",
+            choices=[
+                "1) Use youtube link. ",
+                "2) Use local video. ",
+            ]).ask()
+        user_wants_index = int(user_wants[0])
+        if user_wants_index == 1:
+            # then the user wants to use local video
+            filename = input("Please input filename? ")
+            youtube_link = input("Please input youtube link? ")
+
+            video_file = Download(link=youtube_link, filename=filename.replace(" ", "_"))
+            # Return the file path
+            return video_file
+        elif user_wants_index == 2:
             print("\n")
-            print(CRED + "The directory does not exist and if you feel exist try removing "
-                         "space from video file " + CEND)
-            print("\n")
-            # It aks the user the same question again
-            print("Please put in the correct file location")
-            return ask_use_local_video_or_youtube()
-        return video_file
-    else:
+            # The user chose the video located on his or machine
+            video_file = questionary.path("What's the path to the video?").ask()
+            if not os.path.exists(video_file):
+                print("\n")
+                print(CRED + "The path to this video does not exist and if you feel exist try removing "
+                             "space from video file " + CEND)
+                print("\n")
+                # It aks the user the same question again
+                print("Please put in the correct file location")
+                return ask_use_local_video_or_youtube()
+            return video_file
+        else:
+            exit()
+    except:
+        print(CRED + "Please input the right params" + CEND)
         exit()
 
 
@@ -92,9 +96,9 @@ def ask_time_to_clip(question):
     if re.match(match_timestamp, clip_time):
         return clip_time
     else:
-        print("\n")
-        input("Timestamps mis formatted! Insert HH:MM:SS (Hours, Minutes, Seconds)")
-        print("\n")
+
+        print(CRED + "Timestamps mis formatted! Insert HH:MM:SS (Hours, Minutes, Seconds)" + CEND)
+
         # Ask the user the same question
         return ask_time_to_clip(question)
 
@@ -108,6 +112,7 @@ def check_timestamps(start_time, end_time, video_length):
         return True
     elif video_length < end_time_in_sec:
         print(CRED + "> End time is larger than video length! \n \n" + CEND)
+        return False
     else:
         print("\n")
         print(CRED + "> Timestamps invalid! \n \n" + CEND)

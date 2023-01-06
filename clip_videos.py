@@ -46,7 +46,9 @@ def clip_multiple_videos_and_merge(video_duration, video_file, folder_name, merg
 def clip_single_video(video_duration, video_file, folder_name):
     # Clip Single video out
     start_and_end_time = get_start_and_end_time(video_duration)
+    file_path = f"{folder_name}/{folder_name}.mp4"
     video_clipped = extract_video_clip(file_name=video_file, time_start=start_and_end_time[0],
                                        time_end=start_and_end_time[1],
-                                       file_path=f"{folder_name}/{folder_name}.mp4")
+                                       file_path=file_path)
+    print("Clipped video is located at, ", f"{folder_name}/{folder_name}.mp4")
     print("Video Successfully Clipped")
