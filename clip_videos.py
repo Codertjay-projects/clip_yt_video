@@ -29,8 +29,9 @@ def clip_multiple_videos_and_merge(video_duration, video_file, folder_name, merg
     video_clipped_list = []
     for item in clip_times_list:
         # start clipping
+        file_path = f"{folder_name}/{folder_name}{count}.mp4"
         video_clipped = extract_video_clip(file_name=video_file, time_start=item[0], time_end=item[1],
-                                           file_path=f"{folder_name}/{folder_name}_{count}.mp4")
+                                           file_path=file_path)
         count += 1
         # Append the video location to the list of videos clipped
         video_clipped_list.append(VideoFileClip(video_clipped))

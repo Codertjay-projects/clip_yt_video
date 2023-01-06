@@ -20,6 +20,7 @@ def Download(link, filename):
             print(CRED + "An error has occurred downloading video . Please make sure you have an active internet"
                          " and also the link is a valid one" + CEND)
             exit()
+        print(f"The path to the downloaded video is {video_file}")
         return video_file
     except:
         print("\n")
