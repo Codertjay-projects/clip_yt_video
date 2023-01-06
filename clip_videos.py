@@ -30,6 +30,8 @@ def clip_multiple_videos_and_merge(video_duration, video_file, folder_name, merg
     for item in clip_times_list:
         # start clipping
         file_path = f"{folder_name}/{folder_name}{count}.mp4"
+        # Replace empty space
+        file_path.replace(" ","")
         video_clipped = extract_video_clip(file_name=video_file, time_start=item[0], time_end=item[1],
                                            file_path=file_path)
         count += 1
