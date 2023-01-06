@@ -7,7 +7,7 @@ from moviepy.video.io.VideoFileClip import VideoFileClip
 
 def create_folder(folder_name):
     if os.path.exists(folder_name):
-        print("Print Folder already exists please use another folder")
+        print("Folder already exists please use another folder")
         exit()
     else:
         os.mkdir(folder_name)
