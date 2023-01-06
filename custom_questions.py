@@ -1,48 +1,9 @@
-import os
 import re
-
-import questionary
-
-from custom_variable import video_location, youtube_link, video_path, downloaded_file_name
-from youtube_downloader import Download
 
 # defining colors
 CBLUE = "\33[34m"
 CEND = "\33[0m"
 CRED = "\33[31m"
-
-
-def ask_use_local_video_or_youtube():
-    try:
-        # It returns the path to the video file
-        # Ask the user questions
-        print("\n")
-
-        if video_location == "YouTube":
-            # then the user wants to use local video
-            filename = downloaded_file_name
-
-            video_file = Download(link=youtube_link, filename=filename.replace(" ", "_"))
-            # Return the file path
-            return video_file
-        elif video_location == "Local":
-            print("\n")
-            # The path in which the video is located in the user machine
-            video_file = video_path
-            if not os.path.exists(video_file):
-                print("\n")
-                print(CRED + "The path to this video does not exist and if you feel exist try removing "
-                             "space from video file " + CEND)
-                print("\n")
-                # It aks the user the same question again
-                print("Please put in the correct file location")
-                exit()
-            return video_file
-        else:
-            exit()
-    except:
-        print(CRED + "Please input the right params" + CEND)
-        exit()
 
 
 # converting time to seconds
